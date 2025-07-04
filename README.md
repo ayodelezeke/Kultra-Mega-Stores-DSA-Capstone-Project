@@ -92,7 +92,27 @@ Two datasets were provided by the Business Manager of KMS.
 
    Output:
 
+   ![Output 5](https://github.com/user-attachments/assets/26e0174f-01e3-4349-8bcd-43106bcf10ac)
+
+   Some actions that can be taken to increase the revenue from these customers are:
+   - Sending personalized emails or SMS with incentives (e.g., 10% off next purchase).
+   - Recommending complementary or higher-value products at checkout for repeat customers that buy low-value products.
+   - Enroll them in a loyalty program with tiered rewards to encourage repeat purchases and build long-term engagement.
+   - Offer targeted discounts or bundles based on their past purchases to build conversion and interest.
+
+5. Goal: What were the total sales of appliances in Ontario?
+   
+   SQL Snippet:
+   ``` SQL
+   SELECT SUM(Sales) AS [Total Sales]
+   FROM [dbo].[KMS Sql Case Study]
+   WHERE Region = 'Ontario' AND Product_Sub_Category = 'Appliances'
+   ```
+
+   Output:
+
    ![Output 4](https://github.com/user-attachments/assets/3a91d148-6dc3-44f0-9cb0-42271e61637a)
+
 
 
 
