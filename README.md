@@ -137,14 +137,134 @@ Query was repeated for relevant columns
    
    SQL Snippet:
    ``` SQL
-   SELECT SUM(Sales) AS [Total Sales]
+   --First: Identifying the most valuable customers in terms of total sales
+   SELECT TOP 5 Customer_Name, SUM(Sales) AS Total_Sales
    FROM [dbo].[KMS Sql Case Study]
-   WHERE Region = 'Ontario' AND Product_Sub_Category = 'Appliances'
+   GROUP BY Customer_Name
+   ORDER BY Total_Sales DESC
    ```
 
    Output:
 
-   ![Output 4](https://github.com/user-attachments/assets/266f61af-c7de-46df-95f9-2b7de604eb1f)
+   ![Output 7](https://github.com/user-attachments/assets/ab6e669d-98b8-4893-82c1-822cc00d0e69)
+
+   SQL Snippet:
+   ``` SQL
+   --Second: Identifying the products or services they purchase
+   WITH Customer_Sales AS (
+    SELECT Customer_Name, SUM(Sales) AS Total_Sales
+    FROM [dbo].[KMS Sql Case Study]
+    GROUP BY Customer_Name),
+   Top_Customers AS (
+    SELECT TOP 5 Customer_Name, Total_Sales
+    FROM Customer_Sales
+    ORDER BY Total_Sales DESC),
+   Customer_Category_Sales AS (
+    SELECT o.[Customer_Name], o.[Product_Category], SUM(o.[Sales]) AS Category_Sales
+    FROM [dbo].[KMS Sql Case Study] AS o
+    JOIN Top_Customers AS tc
+    ON o.[Customer_Name] = tc.Customer_Name
+    GROUP BY o.[Customer_Name], o.[Product_Category])
+
+   SELECT 
+    ccs.Customer_Name,
+    ccs.Product_Category,
+    ccs.Category_Sales
+   FROM Customer_Category_Sales AS ccs
+   ORDER BY ccs.Category_Sales DESC;
+
+   ```
+
+   Output:
+
+   ![Output 8](https://github.com/user-attachments/assets/061740d4-758a-4365-9c69-a01261e6d204)
+   
+7. Goal: Which small business customer had the highest sales? 
+   
+   SQL Snippet:
+   ``` SQL
+   SELECT TOP 1 Customer_Name, SUM(sales) AS [Highest Sales]
+   FROM [dbo].[KMS Sql Case Study]
+   WHERE Customer_Segment = 'Small Business'
+   GROUP BY Customer_Name
+   ORDER BY [Highest Sales] DESC
+   ```
+
+   Output:
+
+   ![Output 9](https://github.com/user-attachments/assets/b0e8b7f4-1bc9-435c-8741-9c937448e399)
+
+8. Goal: Which Corporate Customer placed the most number of orders in 2009 – 2012?
+   
+   SQL Snippet:
+   ``` SQL
+   SELECT TOP 1 Customer_Name, SUM(Order_Quantity) AS [Number Of Orders]
+   FROM [dbo].[KMS Sql Case Study]
+   WHERE Customer_Segment = 'Corporate' AND YEAR(Order_Date) BETWEEN '2009' AND '2012'
+   GROUP BY Customer_Name
+   ORDER BY [Number Of Orders] DESC
+   ```
+
+   Output:
+
+   ![Output 10](https://github.com/user-attachments/assets/c38588a8-8d14-4ea8-8030-b0add744e051)
+
+9. Goal: Which consumer customer was the most profitable one? 
+   
+   SQL Snippet:
+   ``` SQL
+   SELECT TOP 1 Customer_Name, SUM(Profit) as Profit
+   FROM [dbo].[KMS Sql Case Study]
+   WHERE Customer_Segment = 'Consumer'
+   GROUP BY Customer_Name
+   ORDER BY Profit DESC
+   ```
+
+   Output:
+
+   ![Output 11](https://github.com/user-attachments/assets/476702dc-5541-44aa-b208-8a95d0e60aee)
+
+
+10. Goal: Which customer returned items, and what segment do they belong to?
+
+    Firstly, the table Order_Status is added to the database. Then both tables are joined
+
+    SQL Snippet:
+    ``` SQL
+    SELECT k.Customer_Name, k.Customer_Segment
+    FROM [dbo].[KMS Sql Case Study] k
+    JOIN Order_Status o
+    ON k.Order_ID = o.Order_ID
+    WHERE o.[Status] = 'Returned'
+    ```
+11. Goal:  If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority?
+
+    SQL Snippet:
+    ``` SQL
+    SELECT Order_Priority,
+           Ship_Mode,
+           COUNT(Order_ID) AS Number_Of_Orders,
+           SUM(Shipping_Cost) AS Total_Shipping_Cost,
+           AVG(Shipping_Cost) AS Avg_Shipping_Cost
+    FROM [dbo].[KMS Sql Case Study]
+    GROUP BY Order_Priority, Ship_Mode
+    ORDER BY Order_Priority, Avg_Shipping_Cost DESC
+    ```
+
+    Output:
+
+    ![Output 12](https://github.com/user-attachments/assets/19d0fdae-0f6d-47f5-a79e-1f7072c288ba)
+
+    Insight: The company did not appropriately spend shipping costs based on order priority. The data shows that some lower-priority orders incurred higher shipping costs than higher-priority ones
+
+    
+
+
+
+
+
+
+
 
 
 
