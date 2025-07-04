@@ -1,6 +1,9 @@
 # Kultra Mega Stores (KMS) Analysis 
 This project is an Exploratory Data Analysis using SQL into Kultra Mega Stores(Abuja Division) to generate insights that can increase customer engagement, increase revenue in struggling areas and implement cost-saving measures across the board.
 
+## Table of Contents
+
+
 ## Overview
 Key questions are asked such as:
 - Strategies for increasing customer engagement
