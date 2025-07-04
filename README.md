@@ -21,7 +21,21 @@ Two datasets were provided by the Business Manager of KMS.
 - SQL dialect used : T-SQL
 - Environment: SQL Server Management Studio (SSMS)
 
+## Data Optimization
+Some columns were formatted into two decimal places for better analysis and insight
+
+Columns formatted are: Sales, Discount, Profit, Unit_Price, Shipping_Cost and Product_Base_Margin
+
+SQL Snippet example:
+``` SQL
+ALTER TABLE [dbo].[KMS Sql Case Study]
+ALTER COLUMN Sales DECIMAL (15,2)
+```
+
+Query was repeated for relevant columns
+
 ## Queries and Insights
+### Case Scenario I
 1. Goal: Which product category had the highest sales?
    
    SQL Snippet:
@@ -34,7 +48,8 @@ Two datasets were provided by the Business Manager of KMS.
 
    Output:
 
-    ![Output 1](https://github.com/user-attachments/assets/96883b91-47d8-4504-a507-f71b5448f5e9)
+   ![Output 1](https://github.com/user-attachments/assets/c4a1a851-2787-4e6e-a897-e40539324b59)
+
 
 
 2. Goal: What are the Top 3 and Bottom 3 regions in terms of sales?
@@ -50,7 +65,8 @@ Two datasets were provided by the Business Manager of KMS.
 
    Output:
 
-   ![Output 2](https://github.com/user-attachments/assets/161d4e77-bfa6-4974-a9c0-768a5194bad6)
+   ![Output 2](https://github.com/user-attachments/assets/69dd1b9a-5d63-4c4b-9f17-d6ecc28f3788)
+
 
    SQL Snippet:
    ``` SQL
@@ -63,7 +79,8 @@ Two datasets were provided by the Business Manager of KMS.
 
    Output:
 
-   ![Output 3](https://github.com/user-attachments/assets/ca0f5e5d-7be4-45dd-8008-e3929ca3efb2)
+   ![Output 3](https://github.com/user-attachments/assets/21c86c10-da6c-4ed3-9789-c2674e64713c)
+
 
 3. Goal: What were the total sales of appliances in Ontario?
    
@@ -76,7 +93,7 @@ Two datasets were provided by the Business Manager of KMS.
 
    Output:
 
-   ![Output 4](https://github.com/user-attachments/assets/3a91d148-6dc3-44f0-9cb0-42271e61637a)
+   ![Output 4](https://github.com/user-attachments/assets/266f61af-c7de-46df-95f9-2b7de604eb1f)
 
 4. Goal:  Advise the management of KMS on what to do to increase the revenue from the bottom 10 customers.
 
@@ -92,15 +109,31 @@ Two datasets were provided by the Business Manager of KMS.
 
    Output:
 
-   ![Output 5](https://github.com/user-attachments/assets/26e0174f-01e3-4349-8bcd-43106bcf10ac)
+   ![Output 5](https://github.com/user-attachments/assets/56816368-6eb3-459b-9f50-e2add18fc753)
+
 
    Some actions that can be taken to increase the revenue from these customers are:
-   - Sending personalized emails or SMS with incentives (e.g., 10% off next purchase).
-   - Recommending complementary or higher-value products at checkout for repeat customers that buy low-value products.
-   - Enroll them in a loyalty program with tiered rewards to encourage repeat purchases and build long-term engagement.
-   - Offer targeted discounts or bundles based on their past purchases to build conversion and interest.
+   - Sending personalized emails or SMS.
+   - Recommending complementary or higher-value products.
+   - Enrolling them in a loyalty program.
+   - Offering targeted discounts or bundles.
 
-5. Goal: What were the total sales of appliances in Ontario?
+5. Goal: KMS incurred the most shipping cost using which shipping method? 
+   
+   SQL Snippet:
+   ``` SQL
+   SELECT TOP 1 Ship_Mode, SUM(Shipping_Cost) AS [Total Shipping Cost]
+   FROM [dbo].[KMS Sql Case Study]
+   GROUP BY Ship_Mode
+   ORDER BY [Total Shipping Cost] DESC
+   ```
+
+   Output:
+
+   ![Output 6](https://github.com/user-attachments/assets/abb5ada3-79f1-4017-8478-4c804d10d1ed)
+
+### Case Scenario II
+6. Goal: Who are the most valuable customers, and what products or services do they typically purchase?
    
    SQL Snippet:
    ``` SQL
@@ -111,8 +144,7 @@ Two datasets were provided by the Business Manager of KMS.
 
    Output:
 
-   ![Output 4](https://github.com/user-attachments/assets/3a91d148-6dc3-44f0-9cb0-42271e61637a)
-
+   ![Output 4](https://github.com/user-attachments/assets/266f61af-c7de-46df-95f9-2b7de604eb1f)
 
 
 
