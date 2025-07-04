@@ -2,6 +2,13 @@
 This project is an Exploratory Data Analysis using SQL into Kultra Mega Stores(Abuja Division) to generate insights that can increase customer engagement, increase revenue in struggling areas and implement cost-saving measures across the board.
 
 ## Table of Contents
+- [Overview](https://github.com/ayodelezeke/Kultra-Mega-Stores-DSA-Capstone-Project#overview)
+- [Dataset](https://github.com/ayodelezeke/Kultra-Mega-Stores-DSA-Capstone-Project#dataset)
+- [Tools and Technologies](https://github.com/ayodelezeke/Kultra-Mega-Stores-DSA-Capstone-Project#tools-and-technologies)
+- [Data Optimization](https://github.com/ayodelezeke/Kultra-Mega-Stores-DSA-Capstone-Project#data-optimization)
+- [Queries and Insights](https://github.com/ayodelezeke/Kultra-Mega-Stores-DSA-Capstone-Project#queries-and-insights)
+  - [Case Scenario I](https://github.com/ayodelezeke/Kultra-Mega-Stores-DSA-Capstone-Project#case-scenario-i)
+  - [Case Scenario II](https://github.com/ayodelezeke/Kultra-Mega-Stores-DSA-Capstone-Project#case-scenario-ii )
 
 
 ## Overview
