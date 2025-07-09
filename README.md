@@ -272,7 +272,13 @@ Query was repeated for relevant columns
     Insight: The company did not appropriately spend shipping costs based on order priority. The data shows that some lower-priority orders incurred higher shipping costs than higher-priority ones
 
     
+## Reach me at:
 
+[LinkedIn](www.linkedin.com/in/oluwaseun-ayodele-a65961237)
+
+[Email](mailto:holuwashehun27@gmail.com)
+
++2348167191101
 
 
 
